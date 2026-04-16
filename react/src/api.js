@@ -1,4 +1,4 @@
-const BASE_URL = process.env.REACT_APP_API_URL;
+const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:8000/api/v1/users";
 
 export const createUser = async (data) => {
   const res = await fetch(BASE_URL, {

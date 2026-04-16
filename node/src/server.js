@@ -1,15 +1,27 @@
-import express from "express"
-import cors from "cors"
-import cookieParser from "cookie-parser" // apane server se user se browser ke cookies ko accept kr aayeconst app = express()
+  import express from "express"
+  import cors from "cors"
+  import cookieParser from "cookie-parser" // apane server se user se browser ke cookies ko accept kr aayeconst app = express()
 
-const app = express()
-app.use(cors({
-    origin:"http://localhost:3000",
-    credentials: true
-}))
-app.use(express.json())
+  const app = express()
+  app.use(cors({
+      origin:"*",
+      credentials: true
+  }))
+  app.use(express.json())
+  app.use(cookieParser());
 
-import userRouter from './routes/user.routes.js'
-app.use("/api/v1/users", userRouter)
+  app.get("/health", (req, res) => {
+    console.log("egheriiweiwegifwgi");
+    res.status(200).json({
+    success: true,
+    message: "Server is running 🚀",
+    uptime: process.uptime(),
+    timestamp: new Date()
+  });
+});
 
-export{app}
+  import userRouter from './routes/user.routes.js'
+  
+  // app.use("/api/v1/users", userRouter)
+
+  export{app}
